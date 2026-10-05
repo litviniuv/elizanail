@@ -1,0 +1,5 @@
+/* System font stacks: no webfont files are shipped for this draft (fonts/ kept for the duty tree). */
+:root {
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Noto Serif", "DejaVu Serif", serif;
+}

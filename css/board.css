@@ -1,0 +1,122 @@
+/* Variants 2 and 3: "Имя почерком поверх услуги" – warm visit board across the whole page */
+.board {
+  --board: #f6eee4;
+  --board-2: #efe3d5;
+  --surface: rgba(255, 252, 247, .78);
+  --line: rgba(92, 70, 52, .18);
+  background-color: var(--board);
+  background-image:
+    radial-gradient(1200px 700px at 15% 0%, rgba(255, 255, 255, .55), transparent 60%),
+    repeating-linear-gradient(90deg, rgba(120, 88, 60, .028) 0 1px, transparent 1px 9px),
+    repeating-linear-gradient(0deg, rgba(120, 88, 60, .018) 0 1px, transparent 1px 13px),
+    linear-gradient(180deg, var(--board), var(--board-2));
+  background-attachment: fixed;
+}
+.theme-sage { --accent: #4d6b45; --accent-hover: #3f5a38; --glow: rgba(77, 107, 69, .20); --ink: #33302a; --muted: #625b52; --board: #f5efe6; --board-2: #ece4d7; }
+.theme-caramel { --accent: #8a4a2e; --accent-hover: #743c24; --glow: rgba(138, 74, 46, .20); --ink: #3a2a20; --muted: #6a5546; --board: #f6ebdf; --board-2: #eedccb; }
+
+.board .btn-primary:hover { background: var(--accent-hover); }
+.board .kicker, .board .b-brow { color: var(--accent); }
+.board .demo-strip { background: var(--ink); }
+
+/* light spot following the pointer (static on touch) */
+.board-glow {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(420px circle at var(--gx, 82%) var(--gy, 28%), var(--glow), transparent 70%);
+}
+.board main, .board .site-footer { position: relative; z-index: 1; }
+.board .site-header { background: rgba(255, 252, 247, .97); }
+.board .site-menu { background: var(--board); }
+
+/* hero */
+.b-hero { padding: 28px 0 44px; }
+.b-hero-grid { display: grid; gap: 22px; }
+.b-brow { font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 12px; }
+.b-hero h1 { font-size: clamp(1.8rem, 1.2rem + 2.4vw, 2.6rem); max-width: 15ch; }
+.b-sign {
+  margin: 10px 0 0 1.2em;
+  font-family: var(--font-display); font-style: italic; font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem);
+  color: var(--accent); transform: rotate(-2deg); transform-origin: left center; display: inline-block;
+}
+.b-line { margin-top: 14px; color: var(--muted); font-size: 1.05rem; max-width: 46ch; }
+.b-photo { justify-self: center; width: min(100%, 300px); }
+.b-photo-tilt {
+  --base-rot: -3deg;
+  background: #fffdf9; padding: 10px 10px 12px; border-radius: 6px;
+  box-shadow: 0 18px 40px rgba(60, 40, 25, .18), 0 2px 6px rgba(60, 40, 25, .12);
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) rotate(calc(var(--base-rot) + var(--rz, 0deg)));
+  transition: transform .3s ease-out;
+}
+.theme-caramel .b-photo-tilt { --base-rot: 3deg; }
+.b-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 3px; }
+
+.b-facts { display: grid; gap: 0; margin-top: 6px; }
+.b-facts li { position: relative; padding: 14px 0 12px; font-weight: 600; }
+.b-facts li::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--ink); opacity: .45;
+  transform-origin: left center; animation: rule-draw .9s ease-out both;
+}
+.b-facts li:nth-child(2)::before { animation-delay: .25s; }
+.b-facts li:nth-child(3)::before { animation-delay: .5s; }
+@keyframes rule-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* sections on the board */
+.board .about, .board .gallery { background: transparent; border: 0; }
+.board .section h2 { font-style: italic; }
+.board .service-card { background: var(--surface); border-color: var(--line); border-top: 1px solid var(--line); box-shadow: 0 6px 18px rgba(60, 40, 25, .06); }
+.board .service-card h3 { font-style: italic; color: var(--accent); }
+.board .ticks li::before { background: var(--accent); box-shadow: 0 0 0 4px var(--glow); }
+.board .about-photo { background: #fffdf9; padding: 10px; border-radius: 6px; transform: rotate(1.5deg); box-shadow: 0 14px 30px rgba(60, 40, 25, .15); }
+.board .about-photo img { border-radius: 3px; }
+.board .gallery-grid { gap: 14px; padding: 6px 4px; }
+.board .gallery-grid li { background: #fffdf9; padding: 7px; border-radius: 5px; box-shadow: 0 10px 22px rgba(60, 40, 25, .14); transform: rotate(-1.5deg); }
+.board .gallery-grid li:nth-child(even) { transform: rotate(1.2deg); }
+.board .gallery-grid img { border-radius: 2px; }
+.board .rating { background: var(--surface); }
+.board .contacts-map { background: #fffdf9; padding: 8px; border-radius: 8px; border: 0; box-shadow: 0 12px 26px rgba(60, 40, 25, .14); }
+.board .contacts-map iframe { border-radius: 4px; }
+.board .site-footer { background: transparent; color: var(--ink); border-top: 1px solid var(--line); }
+.board .site-footer a, .board .footer-brand { color: var(--ink); }
+.board .footer-top { border-bottom-color: var(--line); }
+
+@media (min-width: 600px) {
+  .b-photo { width: min(100%, 340px); }
+  .b-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .b-facts li { padding: 16px 18px 12px; }
+  .b-facts li:first-child { padding-left: 0; }
+  .b-facts li + li::after {
+    content: ""; position: absolute; left: 0; top: 12px; bottom: 6px; width: 1px; background: var(--ink); opacity: .35;
+    transform-origin: top center; animation: rule-draw-v .7s ease-out both; animation-delay: .9s;
+  }
+  @keyframes rule-draw-v { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+}
+
+@media (min-width: 900px) {
+  .b-hero { padding: 56px 0 64px; }
+  .b-hero-grid { grid-template-columns: 1.15fr .85fr; column-gap: 56px; row-gap: 36px; align-items: center; }
+  .b-photo { grid-column: 2; grid-row: 1; width: min(100%, 380px); }
+  .b-facts { grid-column: 1 / -1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .b-facts li::before, .b-facts li + li::after { animation: none; }
+  .b-photo-tilt { transition: none; }
+}
+
+/* variant 3 accents: larger handwritten note with a drawn underline, bigger tilted photos */
+.theme-caramel .b-hero h1 { max-width: 18ch; }
+.theme-caramel .b-sign { font-size: clamp(1.2rem, 0.85rem + 1.6vw, 2rem); padding-bottom: 6px; position: relative; }
+.theme-caramel .b-sign::after {
+  content: ""; position: absolute; left: -4px; right: -8px; bottom: 0; height: 8px;
+  border-bottom: 2px solid var(--accent); border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  transform-origin: left center; animation: rule-draw 1s ease-out .4s both;
+}
+.theme-caramel .gallery-grid li { transform: rotate(2deg); }
+.theme-caramel .gallery-grid li:nth-child(even) { transform: rotate(-2.2deg); }
+.theme-caramel .about-photo { transform: rotate(-2deg); }
+@media (min-width: 900px) {
+  .theme-caramel .b-photo { width: min(100%, 420px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .theme-caramel .b-sign::after { animation: none; }
+}
